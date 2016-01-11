@@ -1,7 +1,13 @@
 $(document).ready(function() {
  $('select').material_select();
 
+$("#inputfield").on("change", function() {
+    $("#inputthrow").text($("#inputfield").val());
+  }).trigger("change");
 
+$("#radius").on("change", function() {
+    $("#radiusthrow").text($("#radius").val());
+  }).trigger("change");
 
  $("#searchBtn").click(function (e) {
 
@@ -12,20 +18,26 @@ $(document).ready(function() {
   e.preventDefault();
 
   var userLocation = $(".userLocation").val().trim();
-  var userCategory = $("#inputfield value:selected").val().text();
-  var radius;
+  var userCategory = $("#inputthrow").text();
+  var radius = $(".range-field span").text();
   var perPage;
 
-  var sqootDealAPI = "https://api.sqoot.com/v2/deals?api_key=fflt53&location=?";
+  var sqootDealAPI = "https://api.sqoot.com/v2/deals?api_key=fflt53&location=";
   sqootDealAPI += userLocation;
   sqootDealAPI += "&category_slugs=";
   sqootDealAPI += userCategory;
+  sqootDealAPI += "&radius=";
+  sqootDealAPI += radius;
 
 
-  var sqootCouponAPI = "https://api.sqoot.com/v2/coupons?api_key=fflt53&location=?";
+
+  var sqootCouponAPI = "https://api.sqoot.com/v2/coupons?api_key=fflt53&location=";
   sqootCouponAPI += userLocation;
   sqootCouponAPI += "&category_slugs=";
   sqootCouponAPI += userCategory;
+  sqootCouponAPI += "&radius=";
+  sqootCouponAPI += radius;
+
 
   
 
@@ -54,9 +66,9 @@ $(document).ready(function() {
 
     var cardDiv = $("<div>").addClass("card");
     var cardImage = $("<div>").addClass("card-image waves-effect waves-block waves-light");
-    var cardContent = $("<div>").addClass("card-content");
+    var cardContent = $("<div>").addClass("card-content light-blue lighten-4");
     var cardTitle = $("<span>").addClass("card-title activator grey-text text-darken-4").html(dealTitle);
-    var cardReveal = $("<div>").addClass("card-reveal");
+    var cardReveal = $("<div>").addClass("card-reveal light-blue lighten-4");
     var cardInfoReveal = $("<span>").addClass("card-title grey-text text-darken-4");
     var closeIcon = $("<i>").addClass("material-icons right").html("close");
 
@@ -74,12 +86,14 @@ $(document).ready(function() {
        .append(closeIcon)
        .append(merchantName)
        .append(merchantLocality)
+       .append(merchantRegion)
        .append(dealPrice)
        .append(dealUrl)
        )
       
       )
      );
+
 
    });
 });   
@@ -112,9 +126,9 @@ function (data) {
 
   var cardDiv = $("<div>").addClass("card");
   var cardImage = $("<div>").addClass("card-image waves-effect waves-block waves-light");
-  var cardContent = $("<div>").addClass("card-content");
+  var cardContent = $("<div>").addClass("card-content yellow lighten-3");
   var cardTitle = $("<span>").addClass("card-title activator grey-text text-darken-4").html(couponTitle);
-  var cardReveal = $("<div>").addClass("card-reveal");
+  var cardReveal = $("<div>").addClass("card-reveal yellow lighten-3");
   var cardInfoReveal = $("<span>").addClass("card-title grey-text text-darken-4");
   var closeIcon = $("<i>").addClass("material-icons right").html("close");
 
@@ -131,15 +145,13 @@ function (data) {
      .append(closeIcon)
      .append(merchantName)
      .append(merchantLocality)
+     .append(merchantRegion)
      .append(couponPrice)
      .append(couponUrl)
      )
     
     )
    );
-
-
-
 
  }); 
 
