@@ -1,12 +1,6 @@
 $(document).ready(function() {
- $('select').material_select();
 
- var userLocation = $(".userLocation").val().trim();
 
- $('#searchBtn').click(function(e){
-
-  alert(userLocation);
-});
-  
+var googleAPI = "AIzaSyA6_OGlr-FzwsWFmQ9vVbRIY2wCBMCbJwM";
 
 });

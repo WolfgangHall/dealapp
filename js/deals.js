@@ -1,13 +1,6 @@
 $(document).ready(function() {
  $('select').material_select();
 
-$("#inputfield").on("change", function() {
-    $("#inputthrow").text($("#inputfield").val());
-  }).trigger("change");
-
-$("#radius").on("change", function() {
-    $("#radiusthrow").text($("#radius").val());
-  }).trigger("change");
 
  $("#searchBtn").click(function (e) {
 
@@ -17,9 +10,13 @@ $("#radius").on("change", function() {
 
   e.preventDefault();
 
+  $('html, body').animate({
+      scrollTop: $("#dealsRow").offset().top
+    }, 1800);
+
   var userLocation = $(".userLocation").val().trim();
-  var userCategory = $("#inputthrow").text();
-  var radius = $(".range-field span").text();
+  var userCategory = $("#inputfield").val();
+  var radius = $("#radius").val();
   var perPage;
 
   var sqootDealAPI = "https://api.sqoot.com/v2/deals?api_key=fflt53&location=";
@@ -132,7 +129,7 @@ function (data) {
   var cardInfoReveal = $("<span>").addClass("card-title grey-text text-darken-4");
   var closeIcon = $("<i>").addClass("material-icons right").html("close");
 
-  $("#couponsRow").append(cardDiv
+  $("#dealsRow").append(cardDiv
    .append(cardImage
     .append(couponImage)
     )
