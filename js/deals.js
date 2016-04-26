@@ -129,7 +129,7 @@ function (data) {
   var cardInfoReveal = $("<span>").addClass("card-title grey-text text-darken-4");
   var closeIcon = $("<i>").addClass("material-icons right").html("close");
 
-  $("#dealsRow").append(cardDiv
+  $("#couponsRow").append(cardDiv
    .append(cardImage
     .append(couponImage)
     )
